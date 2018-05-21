@@ -182,7 +182,7 @@ class block_course_menu_renderer extends plugin_renderer_base
             if ($current) {
                 $attributes['class'] .= ' active_tree_node';
             }
-            $leafIcon = $this->icon($OUTPUT->pix_url('i/navigationitem'), $section['trimmed_name'], array('class' => 'smallicon'));
+            $leafIcon = $this->icon($OUTPUT->image_url('i/navigationitem'), $section['trimmed_name'], array('class' => 'smallicon'));
 
             $html = $this->render_leaf($section['trimmed_name'], $leafIcon, $attributes, $section['url'], $current);
         }
@@ -210,7 +210,7 @@ class block_course_menu_renderer extends plugin_renderer_base
         global $OUTPUT;
         if (strpos($src, 'pix_') === 0) {
             $modname = str_replace('pix_', '', $src);
-            $src = $OUTPUT->pix_url('icon', $modname);
+            $src = $OUTPUT->image_url('icon', $modname);
         }
         $p = "";
         foreach ($props as $p => $v) {

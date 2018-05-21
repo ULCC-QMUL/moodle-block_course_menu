@@ -743,7 +743,7 @@ class block_course_menu extends block_base
         foreach ($allmods as $mod) {
             $icon = array();
             $icon['name'] = get_string("modulename", $mod->name);
-            $icon['img'] = (string) $OUTPUT->pix_url('icon', $mod->name);
+            $icon['img'] = (string) $OUTPUT->image_url('icon', $mod->name);
             $icon['val'] = 'pix_' . $mod->name;
 
             $icons[] = $icon;
@@ -1107,13 +1107,13 @@ class block_course_menu extends block_base
             $util['str'][$key] = get_string($key, 'block_course_menu');
         }
 
-        $util['img']['hide'] = (string) $OUTPUT->pix_url('i/hide');
-        $util['img']['show'] = (string) $OUTPUT->pix_url('i/show');
-        $util['img']['up'] = (string) $OUTPUT->pix_url('t/up');
-        $util['img']['right'] = (string) $OUTPUT->pix_url('t/right');
-        $util['img']['left'] = (string) $OUTPUT->pix_url('t/left');
-        $util['img']['down'] = (string) $OUTPUT->pix_url('t/down');
-        $util['img']['edit'] = (string) $OUTPUT->pix_url('i/edit');
+        $util['img']['hide'] = (string) $OUTPUT->image_url('i/hide');
+        $util['img']['show'] = (string) $OUTPUT->image_url('i/show');
+        $util['img']['up'] = (string) $OUTPUT->image_url('t/up');
+        $util['img']['right'] = (string) $OUTPUT->image_url('t/right');
+        $util['img']['left'] = (string) $OUTPUT->image_url('t/left');
+        $util['img']['down'] = (string) $OUTPUT->image_url('t/down');
+        $util['img']['edit'] = (string) $OUTPUT->image_url('i/edit');
 
         return $util;
     }
