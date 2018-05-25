@@ -109,3 +109,5 @@ $string['weeks'] = 'Weeks';
 $string['window'] = 'Window';
 $string['wrongnumber'] = 'Number of chapters must be a correct number (only digits), greater than 1, less than the number of subchapters and less then the number of visible topics / weeks !';
 $string['wrongsubchapnumber'] = 'Number of sub-chapters must be a correct number (only digits), greater than the number of chapters and less then the number of visible topics / weeks !';
+$string['addinstance'] = 'Add a new Course Menu block';
+$string['myaddinstance'] = 'Add a new Course Menu block to the Course';
