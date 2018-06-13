@@ -25,9 +25,10 @@ define(['jquery'], function($) {
             });
 
             // when clicked elsewhere just hide the drop down options again
-            $(document).click(function(){
+            $(document).on("click", function(event){
                 if (!event.target.matches('.dropbtn')) {
                     $('.dropdown-content').hide();
+                    event.stopPropagation();
                 }
             });
 
