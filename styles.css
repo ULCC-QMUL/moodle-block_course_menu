@@ -27,6 +27,12 @@
 .block_navigation .block_tree p.tree_item {
     padding-top: 1px;
 }
+.block_navigation .block_tree .type_container > hr {
+    display: none
+}
+.block_navigation .block_tree .type_container > p.tree_item {
+    margin-top:-23px;
+}
 
 .link-template .clearfix {
     height: 2px;
