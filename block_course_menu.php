@@ -151,8 +151,8 @@ class block_course_menu extends block_base
         foreach ($sections as $k => $section) {
             $sections[$k]['trimmed_name'] = $this->trim($section['name']);
             $sections[$k]['expanded'] = in_array(md5($sections[$k]['trimmed_name']), $sessionVar);
-            if(is_array($section['resources'])) {
-                foreach($section['resources'] as $l => $resource) {
+            if (is_array($section['resources'])) {
+                foreach ($section['resources'] as $l => $resource) {
                     $sections[$k]['resources'][$l]['trimmed_name'] = $this->trim($resource['name']);
                 }
             }
@@ -219,7 +219,7 @@ class block_course_menu extends block_base
             $element['children'] = array();
             if ($element['visible']) {
                 if (!$this->_site_level || substr($element['id'], 0, 4) == 'link' ||
-                        ($this->_site_level && in_array($element['id'], $this->_site_level_elements))) {
+                    ($this->_site_level && in_array($element['id'], $this->_site_level_elements))) {
 
                     $icon = $renderer->icon($element['icon'], $element['name'], array('class' => 'smallicon'));
                     switch ($element['id']) {
@@ -244,8 +244,8 @@ class block_course_menu extends block_base
                                 // user/index.php expect course context, so get one if page has module context.
                                 $currentcontext = $this->page->context->get_course_context(false);
                                 if (!(empty($currentcontext) ||
-                                        ($this->page->course->id == SITEID && !has_capability('moodle/site:viewparticipants', context_system::instance())) ||
-                                        !has_capability('moodle/course:viewparticipants', $currentcontext))) {
+                                    ($this->page->course->id == SITEID && !has_capability('moodle/site:viewparticipants', context_system::instance())) ||
+                                    !has_capability('moodle/course:viewparticipants', $currentcontext))) {
 
                                     $element['url'] = $CFG->wwwroot . '/user/index.php?contextid=' . $currentcontext->id;
                                     $child_node = new navigation_node(array(
@@ -286,7 +286,7 @@ class block_course_menu extends block_base
                                 $index = intval($matches[1]);
                                 if ($index && isset($this->config->links[$index])) { //this should always happen
                                     $lis .= $renderer->render_link($this->config->links[$index], $this->course->id, !$first);
-                                } elseif (isset($this->config->links[$linkIndex])) { //weird bug #0000166 
+                                } elseif (isset($this->config->links[$linkIndex])) { //weird bug #0000166
                                     $lis .= $renderer->render_link($this->config->links[$linkIndex], $this->course->id, !$first);
                                     $linkIndex++;
                                 }
@@ -344,13 +344,13 @@ class block_course_menu extends block_base
                 }
             }
         }
-        $lis .= '<span id="closeallbtn" class="close_all tree_item leaf"><p></p>'.get_string('closeall', $this->blockname).'</span><br>';
+        $lis .= '<span id="closeallbtn" class="close_all tree_item leaf"><p></p>' . get_string('closeall', $this->blockname) . '</span><br>';
 
         $output .= html_writer::tag('ul', $lis, array('class' => 'block_tree list'));
         $output .= '</div>';
 
         $this->contentgenerated = true;
-        $this->content->text = '<style>.block_navigation .block_tree .tree_item.hasicon{white-space:normal;}</style>'.$output;
+        $this->content->text = '<style>.block_navigation .block_tree .tree_item.hasicon{white-space:normal;}</style>' . $output;
 
         return $this->content;
     }
@@ -376,52 +376,52 @@ class block_course_menu extends block_base
         $elements = array();
         $elements[] = $this->create_element("tree", $this->get_name("tree"), '', '', 0);
 
-        $elements []= $this->create_element('showallsections', $this->get_name('showallsections'), '', $CFG->wwwroot . '/blocks/course_menu/icons/viewall.gif', 1, 0);
+        $elements [] = $this->create_element('showallsections', $this->get_name('showallsections'), '', $CFG->wwwroot . '/blocks/course_menu/icons/viewall.gif', 1, 0);
 
         // calendar
         $elements[] = $this->create_element(
-                "calendar", $this->get_name("calendar"), "", "{$CFG->wwwroot}/blocks/course_menu/icons/cal.gif", 1, 0
+            "calendar", $this->get_name("calendar"), "", "{$CFG->wwwroot}/blocks/course_menu/icons/cal.gif", 1, 0
         );
 
         //site pages
         $elements [] = $this->create_element(
-                'sitepages', get_string("sitepages"), '', '', 1, $this->_site_level, 1
+            'sitepages', get_string("sitepages"), '', '', 1, $this->_site_level, 1
         );
 
         //my profile
         $elements [] = $this->create_element(
-                'myprofile', get_string("myprofile"), '', '', 1, $this->_site_level, 1
+            'myprofile', get_string("myprofile"), '', '', 1, $this->_site_level, 1
         );
 
         //my course
         $elements [] = $this->create_element(
-                'mycourses', get_string("mycourses"), '', '', 1, $this->_site_level, 1
+            'mycourses', get_string("mycourses"), '', '', 1, $this->_site_level, 1
         );
 
         //my profile settings
         $elements [] = $this->create_element(
-                'myprofilesettings', get_string("myprofilesettings", "{$this->blockname}"), '', '', 1, $this->_site_level, 1
+            'myprofilesettings', get_string("myprofilesettings", "{$this->blockname}"), '', '', 1, $this->_site_level, 1
         );
 
         //course administration
         $elements [] = $this->create_element(
-                'courseadministration', get_string("courseadministration", "{$this->blockname}"), '', '', 1, 0, 1
+            'courseadministration', get_string("courseadministration", "{$this->blockname}"), '', '', 1, 0, 1
         );
 
         // participants
         $elements [] = $this->create_element(
-                'participants', get_string("participants", "{$this->blockname}"), '', '', 1, 0, 1
+            'participants', get_string("participants", "{$this->blockname}"), '', '', 1, 0, 1
         );
 
         // reports
         $elements [] = $this->create_element(
-                'reports', get_string("reports", "{$this->blockname}"), '', '', 1, 0, 1
+            'reports', get_string("reports", "{$this->blockname}"), '', '', 1, 0, 1
         );
 
         // troubleticket
         if (file_exists($CFG->dirroot . '/blocks/trouble_ticket/block_trouble_ticket.php')) {
             $elements[] = $this->create_element(
-                    "troubleticket", $this->get_name("troubleticket"), "", "{$CFG->wwwroot}/blocks/trouble_ticket/icons/bug.gif", 1, 0
+                "troubleticket", $this->get_name("troubleticket"), "", "{$CFG->wwwroot}/blocks/trouble_ticket/icons/bug.gif", 1, 0
             );
         }
 
@@ -455,7 +455,7 @@ class block_course_menu extends block_base
         $config->expandableTree = self::EXPANDABLE_TREE;
         $config->trimmode = self::TRIM_RIGHT;
         $config->trimlength = isset($CFG->block_course_menu_trimlength) ?
-                $CFG->block_course_menu_trimlength : self::DEFAULT_TRIM_LENGTH;
+            $CFG->block_course_menu_trimlength : self::DEFAULT_TRIM_LENGTH;
 
         $this->config = $config;
         if ($save_it) {
@@ -495,6 +495,24 @@ class block_course_menu extends block_base
                 $this->save_config_to_db();
             } else {
                 $this->init_default_config();
+            }
+        }
+        // Editor: v.sotiras@qmul.ac.uk
+        // In case of a course configuration was stored in objects and as this code is expecting arrays
+        // The two loops are conditionally cast the configuration to array structures
+        if (is_object($this->config->elements)) {
+            foreach ($this->config->elements as & $element) {
+                $element = (array)$element;
+            }
+        }
+        if (is_object($this->config->chapters)) {
+            foreach ($this->config->chapters as & $chapter) {
+                $chapter = (array)$chapter;
+                foreach ($chapter['childElements'] as & $childElement) {
+                    if(is_object($childElement)){
+                        $childElement = (array)$childElement;
+                    }
+                }
             }
         }
         $this->remove_deprecated();
@@ -601,8 +619,10 @@ class block_course_menu extends block_base
         }
 
         switch ($elementId) {
-            case 'calendar': return get_string('calendar', 'calendar');
-            case 'sectiongroup': return get_string("name" . $format);
+            case 'calendar':
+                return get_string('calendar', 'calendar');
+            case 'sectiongroup':
+                return get_string("name" . $format);
             case 'tree':
                 if ($format == 'topics') {
                     return get_string('topics', $this->blockname);
@@ -688,7 +708,9 @@ class block_course_menu extends block_base
                                                 $instancename = $mod->modfullname;
                                             }
 
-                                            $url = isset($mod->url) ? /* >= Moodle 2.6 */ $mod->url : /* Moodle 2.3 - Moodle 2.6  */ $mod->get_url();
+                                            $url = isset($mod->url) ? /* >= Moodle 2.6 */
+                                                $mod->url : /* Moodle 2.3 - Moodle 2.6  */
+                                                $mod->get_url();
 
                                             $iconurl = $mod->get_icon_url();
 
@@ -705,7 +727,7 @@ class block_course_menu extends block_base
                             }
 
                             $showsection = $section->uservisible ||
-                                    ($section->visible && !$section->available && !empty($section->availableinfo));
+                                ($section->visible && !$section->available && !empty($section->availableinfo));
                             //hide hidden sections from students if the course settings say that - bug #212
                             $coursecontext = context_course::instance($this->course->id);
                             if (!($section->visible == 0 && !has_capability('moodle/course:viewhiddensections', $coursecontext)) && $showsection) {
@@ -743,7 +765,7 @@ class block_course_menu extends block_base
         foreach ($allmods as $mod) {
             $icon = array();
             $icon['name'] = get_string("modulename", $mod->name);
-            $icon['img'] = (string) $OUTPUT->image_url('icon', $mod->name);
+            $icon['img'] = (string)$OUTPUT->image_url('icon', $mod->name);
             $icon['val'] = 'pix_' . $mod->name;
 
             $icons[] = $icon;
@@ -757,40 +779,46 @@ class block_course_menu extends block_base
         $mode = self::TRIM_RIGHT;
         $length = self::DEFAULT_TRIM_LENGTH;
         if (!empty($this->config->trimmode)) {
-            $mode = (int) $this->config->trimmode;
+            $mode = (int)$this->config->trimmode;
         }
         if (!empty($this->config->trimlength)) {
-            $length = (int) $this->config->trimlength;
+            $length = (int)$this->config->trimlength;
         }
 
         $str_length = class_exists('core_text') ?
-            /* >= Moodle 2.6 */ core_text::strlen($str) :
-            /* Moodle 2.3 - Moodle 2.6 */ textlib::strlen($str);
+            /* >= Moodle 2.6 */
+            core_text::strlen($str) :
+            /* Moodle 2.3 - Moodle 2.6 */
+            textlib::strlen($str);
 
         switch ($mode) {
             case self::TRIM_RIGHT :
                 if ($str_length > ($length + 3)) {
                     return (class_exists('core_text') ?
-                        /* >= Moodle 2.6 */ substr($str, 0, $length) :
-                        /* Moodle 2.3 - Moodle 2.6 */ textlib::substr($str, 0, $length)) . '...';
+                            /* >= Moodle 2.6 */ substr($str, 0, $length) :
+                            /* Moodle 2.3 - Moodle 2.6 */ textlib::substr($str, 0, $length)) . '...';
                 }
                 break;
             case self::TRIM_LEFT :
                 if ($str_length > ($length + 3)) {
                     return '...' . (class_exists('core_text') ?
-                        /* >= Moodle 2.6 */ core_text::substr($str, $str_length - $length) :
-                        /* Moodle 2.3 - Moodle 2.6 */ textlib::substr($str, $str_length - $length));
+                            /* >= Moodle 2.6 */ core_text::substr($str, $str_length - $length) :
+                            /* Moodle 2.3 - Moodle 2.6 */ textlib::substr($str, $str_length - $length));
                 }
                 break;
             case self::TRIM_CENTER :
                 if ($str_length > ($length + 3)) {
                     $trimlength = ceil($length / 2);
                     $start = class_exists('core_text') ?
-                        /* >= Moodle 2.6 */ core_text::substr($str, 0, $trimlength) :
-                        /* Moodle 2.3 - Moodle 2.6 */ textlib::substr($str, 0, $trimlength);
+                        /* >= Moodle 2.6 */
+                        core_text::substr($str, 0, $trimlength) :
+                        /* Moodle 2.3 - Moodle 2.6 */
+                        textlib::substr($str, 0, $trimlength);
                     $end = class_exists('core_text') ?
-                        /* >= Moodle 2.6 */ core_text::substr($str, $str_length - $trimlength) :
-                        /* Moodle 2.3 - Moodle 2.6 */ textlib::substr($str, $str_length - $trimlength);
+                        /* >= Moodle 2.6 */
+                        core_text::substr($str, $str_length - $trimlength) :
+                        /* Moodle 2.3 - Moodle 2.6 */
+                        textlib::substr($str, $str_length - $trimlength);
                     $string = $start . '...' . $end;
                     return $string;
                 }
@@ -814,7 +842,7 @@ class block_course_menu extends block_base
         $this->check_redo_chaptering(count($sections));
         $sectionNames = array();
         ob_start();
-        include ("{$CFG->dirroot}/blocks/course_menu/config/chapters.php");
+        include("{$CFG->dirroot}/blocks/course_menu/config/chapters.php");
         $cc = ob_get_contents();
         ob_end_clean();
         return $cc;
@@ -845,7 +873,7 @@ class block_course_menu extends block_base
         }
 
         ob_start();
-        include ("{$CFG->dirroot}/blocks/course_menu/config/elements.php");
+        include("{$CFG->dirroot}/blocks/course_menu/config/elements.php");
         $cc = ob_get_contents();
         ob_end_clean();
         return $cc;
@@ -858,7 +886,7 @@ class block_course_menu extends block_base
         $icons = $this->get_link_icons();
 
         ob_start();
-        include ("{$CFG->dirroot}/blocks/course_menu/config/links.php");
+        include("{$CFG->dirroot}/blocks/course_menu/config/links.php");
         $cc = ob_get_contents();
         ob_end_clean();
         return $cc;
@@ -1026,10 +1054,10 @@ class block_course_menu extends block_base
         }
 
         $PAGE->requires->yui_module(
-                array('moodle-block_course_menu-settings'), 'M.block_course_menu_settings.global', array($this->get_settings_util_js(), $this->config), null, true);
+            array('moodle-block_course_menu-settings'), 'M.block_course_menu_settings.global', array($this->get_settings_util_js(), $this->config), null, true);
 
         ob_start();
-        include ("{$CFG->dirroot}/blocks/course_menu/config/global.php");
+        include("{$CFG->dirroot}/blocks/course_menu/config/global.php");
         $cc = ob_get_contents();
         ob_end_clean();
 
@@ -1098,22 +1126,22 @@ class block_course_menu extends block_base
         global $OUTPUT;
         $util = array();
         foreach (array('chaptering', 'subchaptering', 'numberofchapter', 'numberofsubchapter', 'change', 'defaultgrouping', 'chapters',
-    'chapter', 'subchapter', 'subchapters', 'wrongnumber', 'wrongsubchapnumber', 'warningchapnochange', 'warningsubchapnochange',
-    'activatecustomlinks', 'numberoflinks', 'change', 'customlink', 'name', 'url', 'window', 'samewindow', 'newwindow',
-    'icon', 'linkswrongnumber', 'customlink', 'correcturlmsg', 'cannotmoveright', 'emptychapname', 'emptysubchapname',
-    'warningsubchapenable', 'keeppagenavigation', 'allowresize', 'allowscroll', 'showdirectorylinks', 'showlocationbar', 'showmenubar',
-    'showtoolbar', 'showstatusbar', 'defaultwidth', 'defaultheight', 'linknoname', 'linknourl', 'cannotmovetopicup',
-    'cannotmovetopicdown', 'sections') as $key) {
+                     'chapter', 'subchapter', 'subchapters', 'wrongnumber', 'wrongsubchapnumber', 'warningchapnochange', 'warningsubchapnochange',
+                     'activatecustomlinks', 'numberoflinks', 'change', 'customlink', 'name', 'url', 'window', 'samewindow', 'newwindow',
+                     'icon', 'linkswrongnumber', 'customlink', 'correcturlmsg', 'cannotmoveright', 'emptychapname', 'emptysubchapname',
+                     'warningsubchapenable', 'keeppagenavigation', 'allowresize', 'allowscroll', 'showdirectorylinks', 'showlocationbar', 'showmenubar',
+                     'showtoolbar', 'showstatusbar', 'defaultwidth', 'defaultheight', 'linknoname', 'linknourl', 'cannotmovetopicup',
+                     'cannotmovetopicdown', 'sections') as $key) {
             $util['str'][$key] = get_string($key, 'block_course_menu');
         }
 
-        $util['img']['hide'] = (string) $OUTPUT->image_url('i/hide');
-        $util['img']['show'] = (string) $OUTPUT->image_url('i/show');
-        $util['img']['up'] = (string) $OUTPUT->image_url('t/up');
-        $util['img']['right'] = (string) $OUTPUT->image_url('t/right');
-        $util['img']['left'] = (string) $OUTPUT->image_url('t/left');
-        $util['img']['down'] = (string) $OUTPUT->image_url('t/down');
-        $util['img']['edit'] = (string) $OUTPUT->image_url('i/edit');
+        $util['img']['hide'] = (string)$OUTPUT->image_url('i/hide');
+        $util['img']['show'] = (string)$OUTPUT->image_url('i/show');
+        $util['img']['up'] = (string)$OUTPUT->image_url('t/up');
+        $util['img']['right'] = (string)$OUTPUT->image_url('t/right');
+        $util['img']['left'] = (string)$OUTPUT->image_url('t/left');
+        $util['img']['down'] = (string)$OUTPUT->image_url('t/down');
+        $util['img']['edit'] = (string)$OUTPUT->image_url('i/edit');
 
         return $util;
     }
