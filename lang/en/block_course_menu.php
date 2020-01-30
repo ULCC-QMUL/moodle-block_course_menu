@@ -111,3 +111,5 @@ $string['wrongnumber'] = 'Number of chapters must be a correct number (only digi
 $string['wrongsubchapnumber'] = 'Number of sub-chapters must be a correct number (only digits), greater than the number of chapters and less then the number of visible topics / weeks !';
 $string['addinstance'] = 'Add a new Course Menu block';
 $string['myaddinstance'] = 'Add a new Course Menu block to the Course';
+$string['course_menu:addinstance'] = 'Add a new Course Menu block';
+$string['course_menu:myaddinstance'] = 'Add a new Course Menu block to the Course';
