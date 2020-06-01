@@ -249,6 +249,8 @@ YUI.add('moodle-block_course_menu-navigation', function (Y) {
 
         },
         recordEvent: function ($li, isExpanded) {
+
+
             var target = $li.one('.item_name');
             if (target) {
                 var act = isExpanded ? "add" : "remove";
@@ -628,6 +630,9 @@ YUI.add('moodle-block_course_menu-navigation', function (Y) {
             }
 
             var _dock = M.core && M.core.dock ? M.core.dock.get() : M.core_dock;
+
+            var _dock = $(document);
+
 
             new TREE(properties);
             if (typeof properties.bg_color !== 'undefined') {

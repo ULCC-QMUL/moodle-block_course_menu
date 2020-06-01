@@ -20,8 +20,12 @@
  * ---------------------------------------------------------------------------------------------------------------------
  */
 
+
+
 M.block_course_menu = M.block_course_menu || {
     /** The number of expandable branches in existence */
+
+
     expandablebranchcount:0,
     /** An array of initialised trees */
     treecollection:[],

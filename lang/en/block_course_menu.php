@@ -113,3 +113,5 @@ $string['addinstance'] = 'Add a new Course Menu block';
 $string['myaddinstance'] = 'Add a new Course Menu block to the Course';
 $string['course_menu:addinstance'] = 'Add a new Course Menu block';
 $string['course_menu:myaddinstance'] = 'Add a new Course Menu block to the Course';
+$string['myprofile'] = 'My profile';
+$string['usercurrentsettings'] = 'User current setting';

@@ -97,7 +97,10 @@ class block_course_menu extends block_base
 
         $this->page->requires->js_call_amd('block_course_menu/dropdown', 'init');
         $this->page->requires->string_for_js('viewallcourses', 'moodle');
-        $this->page->requires->yui_module(array('moodle-core-dock', 'moodle-block_course_menu-navigation'), 'M.block_course_menu.init_add_tree', array($arguments));
+        $this->page->requires->yui_module(
+            array('moodle-core-dock', 'moodle-block_course_menu-navigation'),
+            'M.block_course_menu.init_add_tree',
+            array($arguments));
 
     }
 
@@ -319,7 +322,7 @@ class block_course_menu extends block_base
                                     $key = '';
                                     if ($element['id'] == 'myprofilesettings') {
                                         $type = global_navigation::TYPE_CONTAINER;
-                                        $key = 'usercurrentsettings';
+                                            $key = 'usercurrentsettings';
                                     } elseif ($element['id'] == 'courseadministration') {
                                         $key = 'courseadministration';
                                         $type = global_navigation::TYPE_COURSE;
@@ -390,7 +393,7 @@ class block_course_menu extends block_base
 
         //my profile
         $elements [] = $this->create_element(
-            'myprofile', get_string("myprofile"), '', '', 1, $this->_site_level, 1
+            'myprofile', get_string("myprofile",$this->blockname), '', '', 1, $this->_site_level, 1
         );
 
         //my course

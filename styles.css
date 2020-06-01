@@ -26,6 +26,8 @@
 
 .block_navigation .block_tree p.tree_item {
     padding-top: 1px;
+    display: inline !important;
+
 }
 .block_navigation .block_tree .type_container > hr {
     display: none
@@ -37,7 +39,9 @@
 .link-template .clearfix {
     height: 2px;
 }
-
+.block_navigation .block_tree .tree_item.branch{
+    display: inline !important;
+}
 .link-template select {
     width: 234px;
     padding: 0;
@@ -144,4 +148,8 @@ background-position: left 10px;
 
 span.close_all {
     display: none;
+}
+
+.cm_tree_item{
+    display: inline !important;
 }

@@ -85,13 +85,13 @@ class block_course_menu_renderer extends plugin_renderer_base
                     }
                     if ($config->subChapEnable) {
                         $title = html_writer::tag('span', $child['name'], array('class' => 'item_name'));
-                        $p = html_writer::tag('p', $title, array('class' => 'cm_tree_item tree_item branch'));
+                        $p = html_writer::tag('p', $title, array('class' => 'cm_tree_item tree_item branch','style'=>'display:inline'));
                         $topic = html_writer::tag('ul', $topic);
                         $collapsed = "collapsed";
                         if ($child['expanded']) {
                             $collapsed = "";
                         }
-                        $topic = html_writer::tag('li', $p . $topic, array('class' => "type_structure depth_{$this->subchater_depth} {$collapsed} contains_branch"));
+                        $topic = html_writer::tag('li', $p . $topic, array('class' => "type_structure depth_{$this->subchater_depth} {$collapsed} contains_branch",'aria-expanded'=>'false'));
                     }
                 } else { //topic
                     $d = $this->topic_depth;
@@ -107,12 +107,12 @@ class block_course_menu_renderer extends plugin_renderer_base
             if ($config->chapEnable) {
                 $subchapter = html_writer::tag('ul', $subchapter);
                 $title = html_writer::tag('span', $chapter['name'], array('class' => 'item_name'));
-                $p = html_writer::tag('p', $title, array('class' => 'cm_tree_item tree_item branch'));
+                $p = html_writer::tag('p', $title, array('class' => 'cm_tree_item tree_item branch','style'=>'display:inline'));
                 $collapsed = "collapsed";
                 if ($chapter['expanded']) {
                     $collapsed = "";
                 }
-                $contents .= html_writer::tag('li', $p . $subchapter, array('class' => "type_structure depth_{$this->chapter_depth} {$collapsed} contains_branch"));
+                $contents .= html_writer::tag('li', $p . $subchapter, array('class' => "type_structure depth_{$this->chapter_depth} {$collapsed} contains_branch",'aria-expanded'=>'false'));
             } else {
                 $contents .= $subchapter;
             }
@@ -164,7 +164,7 @@ class block_course_menu_renderer extends plugin_renderer_base
             if ($current) {
                 $cl = "active_tree_node";
             }
-            $p = html_writer::tag('p', $title, array('class' => 'cm_tree_item tree_item branch ' . $cl));
+            $p = html_writer::tag('p', $title, array('class' => 'cm_tree_item tree_item branch ' . $cl,'style'=>'display:inline'));
             $collapsed = "collapsed";
             if ($section['expanded']) {
                 $collapsed = "";
@@ -173,7 +173,7 @@ class block_course_menu_renderer extends plugin_renderer_base
             if ($current) {
                 $append = "current_branch";
             }
-            $html = html_writer::tag('li', $p . $html, array('class' => "type_structure contains_branch depth_{$depth} {$collapsed} {$append}"));
+            $html = html_writer::tag('li', $p . $html, array('class' => "type_structure contains_branch depth_{$depth} {$collapsed} {$append}",'aria-expanded'=>'false'));
         } else {
             $attributes = array('class' => 'section_link', 'title' => $section['name'], 'id' => 'block-course-menu-section-' . $section['index']);
             if (!$section['visible'] || (!$section['uservisible'] || $section['availableinfo'])) {
